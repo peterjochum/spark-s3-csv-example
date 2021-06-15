@@ -26,7 +26,7 @@ def main():
 
     # Call S3 component to publish sum
     s3_uploader = S3HtmlUploader(bucket_name)
-    s3_uploader.upload(sum)
+    s3_uploader.upload_number_as_html(sum)
 
 if __name__ == "__main__":
     main()

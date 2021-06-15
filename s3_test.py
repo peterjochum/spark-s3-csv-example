@@ -9,7 +9,7 @@ class S3Test(unittest.TestCase):
         self.s3_upload = S3HtmlUploader(your_test_bucket)
 
     def test_upload(self):
-        result = self.s3_upload.upload("template.html")
+        result = self.s3_upload.upload("test.html")
         self.assertTrue(result)
 
     def test_create_html_file(self):
