@@ -1,6 +1,8 @@
+from config import Config
 from s3 import S3HtmlUploader
 from spark import SparkCsv
-
+import urllib.request
+import tempfile
 
 def download_csv(url):
     """
@@ -8,25 +10,26 @@ def download_csv(url):
     :param url: URL of the CSV
     :return: file location
     """
-    raise NotImplementedError
+    temp_file = tempfile.NamedTemporaryFile(delete=False)
+    urllib.request.urlretrieve(url, temp_file.name)
+    return temp_file.name
+
 
 def main():
-    # Variables
-    # TODO: replace with config file
-    url = "http://foo.com/source.csv"
-    column = "columnname"
-    bucket_name = "aws-csv-spark-example"
 
+    cfg = Config()
     # TODO: Download CSV to temporary file
-    file = download_csv(url)
+    file = download_csv(cfg.url)
 
-    # Create sum
+    # Create results
     spark_csv = SparkCsv(file)
-    sum = spark_csv.getSum(column)
+    results = spark_csv.get_sum(cfg.count_column, cfg.timestamp_column)
+    # TODO: this is an array
 
-    # Call S3 component to publish sum
-    s3_uploader = S3HtmlUploader(bucket_name)
-    s3_uploader.upload_number_as_html(sum)
+    # Call S3 component to publish results
+    s3_uploader = S3HtmlUploader(cfg.bucket_name)
+    s3_uploader.upload_results_as_html(results)
+
 
 if __name__ == "__main__":
     main()
