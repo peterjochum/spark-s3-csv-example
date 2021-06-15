@@ -1,10 +1,8 @@
 from config import Config
 from s3 import S3HtmlUploader
 from spark import SparkCsv
-import os
 import urllib.request
 import tempfile
-
 
 def download_csv(url):
     """
@@ -12,16 +10,9 @@ def download_csv(url):
     :param url: URL of the CSV
     :return: file location
     """
-    #raise NotImplementedError
-    csv_local_path = "C:/temp/data.csv"
-    if not os.path.exists("C:/temp"):
-        os.makedirs("C:/temp")
-    urllib.request.urlretrieve(url, csv_local_path)  # Download to disc
-    return csv_local_path
-
-    #temp_file = tempfile.NamedTemporaryFile(delete=False)
-    #urllib.request.urlretrieve(url, temp_file.name)
-    #return temp_file.name
+    temp_file = tempfile.NamedTemporaryFile(delete=False)
+    urllib.request.urlretrieve(url, temp_file.name)
+    return temp_file.name
 
 def main():
     print("Reading config from config.yaml")
