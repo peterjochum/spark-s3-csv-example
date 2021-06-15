@@ -1,6 +1,7 @@
 from s3 import S3HtmlUploader
 from spark import SparkCsv
-
+import os
+import urllib.request
 
 def download_csv(url):
     """
@@ -8,13 +9,17 @@ def download_csv(url):
     :param url: URL of the CSV
     :return: file location
     """
-    raise NotImplementedError
+    #raise NotImplementedError
+    csv_local_path = "C:/temp/data.csv"
+    if not os.path.exists("C:/temp"):
+        os.makedirs("C:/temp")
+    urllib.request.urlretrieve(url, csv_local_path)  # Download to disc
 
 def main():
     # Variables
     # TODO: replace with config file
-    url = "http://foo.com/source.csv"
-    column = "columnname"
+    url = "http://iot.ee.surrey.ac.uk:8080/datasets/traffic/traffic_feb_june/trafficData158324.csv"
+    column = "vehicleCount"
     bucket_name = "aws-csv-spark-example"
 
     # TODO: Download CSV to temporary file
