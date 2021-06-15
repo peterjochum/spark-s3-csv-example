@@ -20,7 +20,7 @@ class S3Test(unittest.TestCase):
     def test_format_results(self):
         test_results = {
             "day": ["2020-06-26 13:12:31", "2020-06-29 13:12:31"],
-            "count": [31, 36]
+            "count": [31, 36],
         }
         test_results_html = self.s3_upload.format_results(test_results)
         self.assertIn(test_results["day"][0], test_results_html)
@@ -34,4 +34,3 @@ class S3Test(unittest.TestCase):
         with open(output_file_name, "r") as file:
             out_str = file.read()
             self.assertIn(results, out_str)
-
