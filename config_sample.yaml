@@ -1,5 +1,0 @@
----
-bucket_name: your-bucket-name
-url: http://example.com/your.csv
-timestamp_column: the-timestamp-column
-count_column: the-count-column

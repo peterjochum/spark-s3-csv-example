@@ -1,0 +1,13 @@
+---
+# Rename this file to config.yaml
+# Target bucket
+bucket_name: your-bucket-name
+
+# URL for the CSV download
+url: http://example.com/your.csv
+
+# Column containing timestamp
+timestamp_column: the-timestamp-column
+
+# Column containing value to be summed up
+count_column: the-count-column

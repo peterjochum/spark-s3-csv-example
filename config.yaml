@@ -1,0 +1,5 @@
+---
+bucket_name: aws-csv-spark-example
+url: http://iot.ee.surrey.ac.uk:8080/datasets/traffic/traffic_feb_june/trafficData158324.csv
+timestamp_column: TIMESTAMP
+count_column: vehicleCount
