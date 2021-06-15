@@ -15,7 +15,7 @@ def main():
     # TODO: replace with config file
     url = "http://foo.com/source.csv"
     column = "columnname"
-    bucket_name = "my-s3-bucket"
+    bucket_name = "aws-csv-spark-example"
 
     # TODO: Download CSV to temporary file
     file = download_csv(url)
